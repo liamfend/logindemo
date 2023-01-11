@@ -17,8 +17,28 @@ export function MyApp(): ReactElement {
       </button>
       {showLogin && (
         <Login
-          event={() => {
-            console.log('mixpanel demo')
+          event={{
+            VIEWED_SIGNUP() {
+              console.log('VIEWED_SIGNUP');
+            },
+            VIEWED_LOGIN() {
+              console.log('VIEWED_LOGIN');
+            },
+            VIEWED_FACEBOOK() {
+              console.log('VIEWED_FACEBOOK');
+            },
+            VIEWED_WECHAT() {
+              console.log('VIEWED_WECHAT');
+            },
+            SIGNUP_SUCCESS(socialType, newsletterAccepted) {
+              // socialType:  枚举 'facebook' | 'wechat' | 'email' | 'phone'
+              // newsletterAccepted: 类型 boolean, 只有注册时候有 表示是否勾选“我愿意以电子邮件或短信的形式接收来自STUDENT.COM学旅家的独家优惠和最新房源资讯。”
+              console.log('SIGNUP_SUCCESS', socialType, newsletterAccepted);
+            },
+            LOGIN_SUCCESS(socialType) {
+              // socialType: 枚举 'facebook' | 'wechat' | 'email' | 'phone'
+              console.log('LOGIN_SUCCESS', socialType);
+            },
           }}
           onClose={() => {
             // alert('you should control visible status . ')
